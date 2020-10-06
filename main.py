@@ -8,9 +8,18 @@ import aiohttp
 from aiohttp import web
 from raven import Client
 
-from restaurants import (FormattedMenus, SafeRestaurant, OtherRestaurant,
-                         BezzinkaRestaurant, AvalonRestaurant, TOTORestaurant,
-                         CasaInkaRestaurant, OlivaRestaurant, CityCantinaRosumRestaurant)
+from restaurants import (
+    FormattedMenus,
+    SafeRestaurant,
+    OtherRestaurant,
+    DonQuijoteRestaurant,
+    DreamsRestaurant,
+    KantinaRestaurant,
+    PlzenskaBranaRestaurant,
+    MenuUJelena,
+    GastrohouseRestaurant,
+)
+                        
 from slack import Channel
 from slackclient import SlackClient
 
@@ -32,12 +41,12 @@ def should_send_to_slack(secret_key):
 
 async def retrieve_menus(session):
     futures = [
-        SafeRestaurant(TOTORestaurant(session)).retrieve_menu(),
-        SafeRestaurant(AvalonRestaurant(session)).retrieve_menu(),
-        SafeRestaurant(OlivaRestaurant(session)).retrieve_menu(),
-        SafeRestaurant(BezzinkaRestaurant(session)).retrieve_menu(),
-        SafeRestaurant(CasaInkaRestaurant(session)).retrieve_menu(),
-        SafeRestaurant(CityCantinaRosumRestaurant(session)).retrieve_menu(),
+        SafeRestaurant(DonQuijoteRestaurant(session)).retrieve_menu(),
+        SafeRestaurant(KantinaRestaurant(session)).retrieve_menu(),
+        SafeRestaurant(PlzenskaBranaRestaurant(session)).retrieve_menu(),
+        SafeRestaurant(DreamsRestaurant(session)).retrieve_menu(),
+        SafeRestaurant(MenuUJelena(session)).retrieve_menu(),
+        SafeRestaurant(GastrohouseRestaurant(session)).retrieve_menu(),
     ]
 
     # Add list of other restaurants first, will be in header.
